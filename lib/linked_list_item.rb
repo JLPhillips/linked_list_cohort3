@@ -1,4 +1,6 @@
 class LinkedListItem
+  include Comparable
+
   attr_accessor :payload
   attr_reader :next_list_item
 
@@ -8,7 +10,7 @@ class LinkedListItem
 
   def next_list_item=(arg)
     if(arg == self)
-      raise "ArgumentError"
+      raise ArgumentError
     else
       @next_list_item = arg
     end
@@ -19,5 +21,13 @@ class LinkedListItem
     else
       return false
     end
+  end
+
+  def <=>(item)
+    self.payload.to_s <=> item.payload.to_s
+  end
+
+  def ===(item)
+    self.object_id === item.object_id
   end
 end
